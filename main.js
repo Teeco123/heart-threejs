@@ -2,22 +2,18 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 
-let model, loader, scene, camera, renderer;
-
-
-loader = new GLTFLoader();
-
-scene = new THREE.Scene()
-camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+let model
 
 //Scene
+const scene = new THREE.Scene()
 scene.background = new THREE.Color(0xbfe3dd)
 
 //camera
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 camera.position.set(0, 0, 10)
 
 //Renderer
-renderer = new THREE.WebGLRenderer()
+const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement)
 
@@ -29,6 +25,8 @@ controls.enablePan = false
 controls.enambleDamping = true;
 
 //Loading Heart
+const loader = new GLTFLoader();
+
 loader.load("/heart.glb", function(gltf) {
   model = gltf.scene;
 
