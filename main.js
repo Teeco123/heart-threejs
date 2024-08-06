@@ -17,9 +17,8 @@ loader.load("/heart.gltf", function(gltf) {
 })
 
 //Lights
-const pointLight1 = new THREE.PointLight(0xffffff, 3, 0, 0);
-pointLight1.position.set(500, 500, 500);
-scene.add(pointLight1);
+const ambientLight = new THREE.AmbientLight(0x404040);
+scene.add(ambientLight);
 
 //Renderer
 const renderer = new THREE.WebGLRenderer()
