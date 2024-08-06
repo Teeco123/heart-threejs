@@ -36,6 +36,14 @@ loader.load("/heart.glb", function(gltf) {
 const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
+const pointLight1 = new THREE.PointLight(0xffffff, 3, 0, 0)
+pointLight1.position.set(10, 10, 10);
+scene.add(pointLight1)
+
+const pointLight2 = new THREE.PointLight(0xffffff, 1, 0, 0)
+pointLight2.position.set(-10, -10, -10);
+scene.add(pointLight2)
+
 //Effects
 const ascii = new AsciiEffect(renderer, ' .:-+*=%@#')
 ascii.setSize(window.innerWidth, window.innerHeight)
