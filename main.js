@@ -17,3 +17,9 @@ loader.load("/heart.gltf", function(gltf) {
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement)
+
+function renderScene() {
+  renderer.render(scene, camera)
+}
+
+renderer.setAnimationLoop(renderScene)
