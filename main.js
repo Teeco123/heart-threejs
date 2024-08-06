@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
+import { AsciiEffect } from 'three/addons/effects/AsciiEffect';
 
 let model
 
@@ -15,14 +16,6 @@ camera.position.set(0, 0, 10)
 //Renderer
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement)
-
-//controls
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.target.set(0, 0.5, 0)
-controls.update()
-controls.enablePan = false
-controls.enambleDamping = true;
 
 //Loading Heart
 const loader = new GLTFLoader();
@@ -43,12 +36,25 @@ loader.load("/heart.glb", function(gltf) {
 const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
+//Effects
+const ascii = new AsciiEffect(renderer, ' .:-+*=%@#')
+ascii.setSize(window.innerWidth, window.innerHeight)
+ascii.domElement.style.color = "red"
+ascii.domElement.style.backgroundColor = "black"
+document.body.appendChild(ascii.domElement)
+
+//controls
+const controls = new OrbitControls(camera, ascii.domElement)
+controls.target.set(0, 0.5, 0)
+controls.update()
+controls.enablePan = false
+controls.enambleDamping = true;
 
 function renderScene() {
 
   controls.update()
 
-  renderer.render(scene, camera)
+  ascii.render(scene, camera)
 }
 
 renderer.setAnimationLoop(renderScene)
