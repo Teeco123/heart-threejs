@@ -10,8 +10,11 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.z = 5
 
 //Loading Heart
-loader.load("/heart.gltf", function(gltf) {
-  scene.add(gltf.scene);
+loader.load("/heart.glb", function(gltf) {
+  let model = gltf.scene;
+
+  model.position.set(0, 0, 0)
+  model.scale.set(1, 1, 1)
 }, undefined, function(error) {
   console.error(error);
 })
