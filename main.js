@@ -1,10 +1,13 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 
-const loader = new GLTFLoader();
+let model, loader, scene, camera, renderer;
 
-const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+
+loader = new GLTFLoader();
+
+scene = new THREE.Scene()
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
 //Scene
 scene.background = new THREE.Color(0xbfe3dd)
@@ -14,7 +17,7 @@ camera.position.set(0, 0, 10)
 
 //Loading Heart
 loader.load("/heart.glb", function(gltf) {
-  let model = gltf.scene;
+  model = gltf.scene;
 
   model.position.set(0, 0, 0)
   model.scale.set(1, 1, 1)
@@ -30,7 +33,7 @@ const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
 //Renderer
-const renderer = new THREE.WebGLRenderer()
+renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement)
 
