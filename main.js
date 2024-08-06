@@ -6,6 +6,10 @@ const loader = new GLTFLoader();
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 
+//camera
+camera.position.z = 5
+
+//Loading Heart
 loader.load("/heart.gltf", function(gltf) {
   scene.add(gltf.scene);
 }, undefined, function(error) {
